@@ -7,6 +7,9 @@ from d4s.context import context
 
 
 class Item:
+    """
+    Class representing store hub files.
+    """
 
     def __init__(self, id: str, base_url: str):
         self.id = id
@@ -66,6 +69,9 @@ class StoreHubClient:
         url = f'{self.base_url}/workspace/?gcube-token={self.token}'
 
         x = requests.get(url)
+        if x.status_code == 500:
+            raise Exception('Unexpected error contacting with workspace')
+
         x = x.json()
 
         return x["item"]["id"]

@@ -48,7 +48,8 @@ class DotDict(MutableMapping):
 
 
 class Context(DotDict, threading.local):
-    """ A thread safe context store for D4S data.
+    """
+    A thread safe context store for D4S data.
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

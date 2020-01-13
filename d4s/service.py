@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from urllib.parse import urlencode
 
 import requests
@@ -6,15 +7,18 @@ from d4s.context import context
 from d4s.storage import Item
 
 
-class Service:
-    """ Class representing D4Science services.
+class Service(ABC):
     """
+    Class representing D4Science services.
+    """
+
     def __init__(self, vre_url):
         self.vre_url = vre_url
 
     @property
+    @abstractmethod
     def url(self):
-        raise NotImplemented()
+        pass
 
     @property
     def token(self):
@@ -22,6 +26,9 @@ class Service:
 
 
 class DataMiner(Service):
+    """
+    Interface to interact with gCube DataMiner service.
+    """
 
     def __init__(self):
         super().__init__(vre_url='http://dataminer-prototypes.d4science.org/wps')
