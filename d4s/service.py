@@ -44,7 +44,7 @@ class DataMiner(Service):
         }
         data.update(**params)
         x = requests.get(self.url, params=urlencode(data))
-        print(x.url)
+
         return x.text
 
     @property
